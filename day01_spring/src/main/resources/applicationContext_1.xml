@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--静态实例化Bean-->
+    <!--<bean id="userDao" class="com.itheima.domain.FactoryBean.StaticFactoryBean" factory-method="getUserDao"/>-->
+
+    <!--非静态实例化Bean-->
+    <!--<bean id="factory" class="com.itheima.domain.FactoryBean.StaticFactoryBean"/>-->
+    <!--<bean id="userDao2" factory-bean="factory" factory-method="creatUserDao"/>-->
+
+    <!--构造方法的方式完成依赖注入-->
+    <bean id="userDao" class="com.itheima.itheima.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <!--构造方法  ref表示引用类型的数据,name 表示构造方法的参数名
+            如果有多个参数那么就有多个constructor-arg标签
+        -->
+        <constructor-arg ref="userDao" name="userDao"/>
+    </bean>
+    <!--set方法完成依赖注入-->
+    <!--<bean id="userDao" class="com.itheima.com.itheima.itheima.impl.impl.UserDaoImpl"/>-->
+    <!--<bean id="userService" class="com.itheima.com.itheima.service.impl.UserServiceImpl">-->
+    <!--<property name="userDao" ref="userDao">-->
+
+    <!--</property>-->
+    <!--</bean>-->
+</beans>

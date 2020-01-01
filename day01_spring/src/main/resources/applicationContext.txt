@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--class属性:通过他的内容在Spring容器中创建相对应 的bean对象,ApplicationContext app=new classPathXmlApplicationContext(classpath:applicationContext)
+    id属性:通过他的名名字获得spring容器中的对象,=app.getBean(userDaoImpl)
+
+
+
+    -->
+    <!--<bean id="userDaoImpl" class="com.itheima.com.itheima.itheima.dao.impl.UserDaoImpl" scope="singleton"></bean>-->
+
+    <!--<bean id="userDao" class="com.itheima.com.itheima.itheima.dao.impl.UserDaoImpl"></bean>-->
+    <!--<bean id="userService" class="com.itheima.com.itheima.service.impl.UserServiceImpl">-->
+    <!--&lt;!&ndash;通过set方法填入值&ndash;&gt;-->
+    <!--<property name="userDao" ref="userDao"></property>-->
+    <!--</bean>-->
+
+
+    <bean id="user1" class="com.itheima.domain.User">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+    </bean>
+    <bean id="user2" class="com.itheima.domain.User">
+        <property name="name" value="lisi"></property>
+        <property name="age" value="28"></property>
+    </bean>
+    <bean id="usertwo" class="com.itheima.com.itheima.itheima.dao.impl.UserDaoImpl">
+    </bean>
+
+    <bean id="userDao" class="com.itheima.com.itheima.itheima.dao.impl.UserDaoImpl">
+        <!--给list<User> 属性添加数据-->
+        <property name="userList">
+            <list>
+                <bean id="user1"></bean>
+                <bean id="user2"></bean>
+            </list>
+        </property>
+        <!--给list<String> 属性添加数据-->
+        <property name="stringList">
+            <list>
+                <value>张三</value>
+                <value>aaa</value>
+                <value>bbb</value>
+            </list>
+        </property>
+        <!--Map<String,String> 属性添加数据-->
+        <property name="stringMap">
+            <map>
+                <entry key="1" value="zhangsan"></entry>
+                <entry key="2" value="lishi"></entry>
+            </map>
+        </property>
+        <!--Map<String,User> 属性添加数据-->
+        <property name="userMap">
+            <map>
+                <entry key="u1" value-ref="user1"></entry>
+                <entry key="u2" value-ref="user2"></entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>
